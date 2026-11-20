@@ -690,9 +690,7 @@ function drawStyle(c){g2=c;c.globalAlpha=.7;rect(c,0,0,W,H,"k");c.globalAlpha=1;
   text(c,"CLOSET",S.x+4,S.y,"w",1,"k");const bs=bt+"";text(c,bs,S.x+S.w-4-textW(bs),S.y,"y",1,"k");c.drawImage(SPR.bolt,S.x+S.w-11-textW(bs),S.y-1);
   rect(c,S.x+4,S.y+9,S.w-8,48,room?room.theme.wall:"d");rect(c,S.x+4,S.y+50,S.w-8,7,"u");rect(c,S.x+4,S.y+50,S.w-8,1,"T");
   c.drawImage(KIDS[prog.style.h],0,0,16,22,S.x+8,S.y+11,32,44);
-  {const [mc,mx]=off(30,10);rect(mx,1,7,8,2,"k");rect(mx,2,7,6,1,"l");rect(mx,1,9,8,1,"x");
-   line(mx,9,8,11,8,"w");line(mx,11,8,13,5,"w");line(mx,9,9,11,9,"W");
-   mx.drawImage(PLUGSETS[prog.style.p][0][0],3,7,16,8,13,1,16,8);c.drawImage(mc,0,0,30,10,S.x+44,S.y+32,60,20);}
+  c.drawImage(PLUGSETS[prog.style.p][0][0],3,7,16,8,S.x+56,S.y+34,32,16);
   let info=null;const rows=[["HOODIE",HOODIES,"h",S.y+68],["PLUG",PLUGS,"p",S.y+96]];
   for(const [label,list,key,y] of rows){text(c,label,S.x+4,y-8,"w");
     list.forEach((o,i)=>{const x=S.x+4+i*16,locked=bt<o.need,sel=prog.style[key]===i;rrect(c,x,y,14,16,sel?"y":"k",1);rect(c,x+1,y+1,12,14,locked?"#2e2a3a":"#e9e4f2");
