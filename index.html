@@ -53,10 +53,7 @@ function textC(c,s,cx,y,col,sc=1,shadow){text(c,s,Math.round(cx-textW(String(s),
 function outlined(c,s,x,y,col,sc,out){for(const [dx,dy] of [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,1],[1,-1],[-1,1]])text(c,s,x+dx*sc/ (sc>2?2:1),y+dy*sc/(sc>2?2:1),out,sc);text(c,s,x,y,col,sc);}
 
 /* ---------------- sprites ---------------- */
-const SPR={
- plug:sprite(["..kkkkkkk...",".kwwwwwwwkgg","Gkwwwwwwyk..","GkWwwwwwwkgg",".kWWWWWWWk..","..kkkkkkk..."]),
- plugOn:sprite(["..kkkkkkk...",".kwwwwwwwkgg","Gkwwwwwwnk..","GkWwwwwwwkgg",".kWWWWWWWk..","..kkkkkkk..."]),
- kid:sprite([
+const KID_ROWS=[
  "......kkkkk.....",
  "....kkhhhhhkk...",
  "...khhhhhhhhhk..",
@@ -78,7 +75,13 @@ const SPR={
  "..krRrrrrrrrrrrk",
  "..krRRrrrrrrrRRk",
  "..kRRRRRRRRRRRRk",
- "..kkkkkkkkkkkkkk"].map(r=>r.padEnd(16,".").slice(0,16))),
+ "..kkkkkkkkkkkkkk"].map(r=>r.padEnd(16,".").slice(0,16));
+const PLUG_ROWS=["....kkkkkkk.....", "...kQQQQQwWk....", "...kQwwwwvWkgggQ", "GGkkQwwwwwWk....", "kkkkQwwwwwWk....", "...kWWWWWWWkgggQ", "...kwWWWWWwk....", "....kkkkkkk....."];
+P.Q="#ffffff";
+const SPR={
+ plug:sprite(["..kkkkkkk...",".kwwwwwwwkgg","Gkwwwwwwyk..","GkWwwwwwwkgg",".kWWWWWWWk..","..kkkkkkk..."]),
+ plugOn:sprite(["..kkkkkkk...",".kwwwwwwwkgg","Gkwwwwwwnk..","GkWwwwwwwkgg",".kWWWWWWWk..","..kkkkkkk..."]),
+ kid:sprite(KID_ROWS),
  catSleep:sprite(["....k.k.......","...kGkGk......","..kGGGGGkkkk..",".kGkkGGGGGGGk.","kGGGGGGGGGGGGk","kGGGGgGGGgGGGk",".kkkkkkkkkkkk."]),
  catAwake:sprite(["...k...k......","..kGk.kGk.....","..kGGGGGkkkk..",".kGyGyGGGGGGk.","kGGGGrGGGGGGGk","kGGGGGGGGGGGGk",".kkkkkkkkkkkk."]),
  catWalk1:sprite(["...........k.k..","..........kGkGk.","k.........kGGGk.","Gk.kkkkkkkGyGyk.",".kGGGGGGGGGGGk..","..kGGGGGGGGGk...","..kGGGGGGGGGk...","..kGk.kGk.kGk...","..kk..kk...kk..."]),
@@ -90,32 +93,24 @@ const SPR={
 SPR.bolt=sprite(["...kk","..kyk",".kyk.","kyyyk",".kyk.","kyk..","kk..."]);
 SPR.boltOff=sprite(["...GG","..G.G",".G.G.","G...G",".G.G.","G.G..","GG..."]);
 // plug sprites quantised to 16 directions for crisp rotation
-function buildPlug(on){const [c,x]=off(16,8);const r=(a,b,w,hh,col)=>{x.fillStyle=P[col]||col;x.fillRect(a,b,w,hh);};
-  r(0,3,3,2,"k");r(0,3,2,1,"G");                                    // strain relief where the cable leaves
-  r(4,0,7,8,"k");r(3,1,9,6,"k");r(4,1,7,6,"w");                     // brick body, rounded corners
-  r(4,5,7,1,"W");r(5,6,5,1,"W");r(10,1,1,5,"W");                    // underside shading + front band
-  r(4,1,1,4,"#ffffff");r(5,1,4,1,"#ffffff");                        // top-left highlight
-  r(9,2,1,1,on?"n":"G");                                            // tiny status LED near the front
-  r(12,2,4,1,"g");r(12,5,4,1,"g");r(15,2,1,1,"#ffffff");r(15,5,1,1,"#ffffff");  // two prongs with shiny tips
-  return c;}
-SPR.plug=buildPlug(false);SPR.plugOn=buildPlug(true);
+SPR.plug=sprite(PLUG_ROWS,{v:"G"});SPR.plugOn=sprite(PLUG_ROWS,{v:"n"});
 function scale2x(s,w,h){const d=new Uint32Array(w*h*4),W2=w*2;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const p=s[y*w+x],A=y>0?s[(y-1)*w+x]:p,B=x<w-1?s[y*w+x+1]:p,C=x>0?s[y*w+x-1]:p,D=y<h-1?s[(y+1)*w+x]:p;
   let e0=p,e1=p,e2=p,e3=p;if(C===A&&C!==D&&A!==B)e0=A;if(A===B&&A!==C&&B!==D)e1=B;if(D===C&&D!==B&&C!==A)e2=C;if(B===D&&B!==A&&D!==C)e3=D;
   const o=y*2*W2+x*2;d[o]=e0;d[o+1]=e1;d[o+W2]=e2;d[o+W2+1]=e3;}return d;}
-function rotSprite(src,ang){const w=src.width,h=src.height,sd=src.getContext("2d").getImageData(0,0,w,h);let px=new Uint32Array(sd.data.buffer.slice(0)),W2=w,H2=h;
+// RotSprite-style rotation done entirely on our own pixel data (no canvas readback, so privacy-noised browsers can't scramble it)
+function rowsToU32(rows,map){const hh=rows.length,w=rows[0].length,o=new Uint32Array(w*hh);for(let j=0;j<hh;j++)for(let i=0;i<w;i++){const ch=rows[j][i];if(ch===".")continue;
+  const v=map&&map[ch]||ch,n=parseInt((P[v]||v).slice(1),16);o[j*w+i]=((255<<24)|((n&255)<<16)|(n&0xff00)|((n>>16)&255))>>>0;}return o;}
+function rotSpriteRows(rows,map,ang){const w=rows[0].length,hh=rows.length;let px=rowsToU32(rows,map),W2=w,H2=hh;
   for(let k=0;k<3;k++){px=scale2x(px,W2,H2);W2*=2;H2*=2;}
-  const N=21,S=8,[oc,ox]=off(N,N),od=ox.createImageData(N,N),o32=new Uint32Array(od.data.buffer),ca=Math.cos(ang),sa=Math.sin(ang),cx=w/2*S,cy=h/2*S;
+  const N=21,S=8,[oc,ox]=off(N,N),od=ox.createImageData(N,N),o32=new Uint32Array(od.data.buffer),ca=Math.cos(ang),sa=Math.sin(ang),cx=w/2*S,cy=hh/2*S;
   for(let y=0;y<N;y++)for(let x=0;x<N;x++){const ux=(x+.5-10.5)*S,uy=(y+.5-10.5)*S,sx=Math.floor(ca*ux+sa*uy+cx),sy=Math.floor(-sa*ux+ca*uy+cy);
     if(sx>=0&&sy>=0&&sx<W2&&sy<H2)o32[y*N+x]=px[sy*W2+sx];}
   ox.putImageData(od,0,0);return oc;}
-function rotSet(src){const out=[];for(let i=0;i<32;i++)out.push(rotSprite(src,i*Math.PI/16));return out;}
-const PLUG_ROT=rotSet(SPR.plug),PLUG_ON_ROT=rotSet(SPR.plugOn);
-function recolor(src,map){const [c,x]=off(src.width,src.height);x.drawImage(src,0,0);const d=x.getImageData(0,0,c.width,c.height);const mm={};for(const k in map)mm[P[k].toLowerCase()]=(P[map[k]]||map[k]);
-  for(let i=0;i<d.data.length;i+=4){if(!d.data[i+3])continue;const hx="#"+((1<<24)|(d.data[i]<<16)|(d.data[i+1]<<8)|d.data[i+2]).toString(16).slice(1);const to=mm[hx];if(to){const n=parseInt(to.slice(1),16);d.data[i]=n>>16;d.data[i+1]=(n>>8)&255;d.data[i+2]=n&255;}}x.putImageData(d,0,0);return c;}
+function rotSetRows(rows,map){const out=[];for(let i=0;i<32;i++)out.push(rotSpriteRows(rows,map,i*Math.PI/16));return out;}
 const HOODIES=[{n:"RED",c1:"r",c2:"R",need:0},{n:"BLUE",c1:"b",c2:"B",need:4},{n:"GREEN",c1:"n",c2:"N",need:8},{n:"PURPLE",c1:"p",c2:"#6e2f5c",need:14},{n:"MIDNIGHT",c1:"e",c2:"D",need:20},{n:"GOLD",c1:"y",c2:"Y",need:30}];
 const PLUGS=[{n:"WHITE",w:"w",W:"W",need:0},{n:"BLACK",w:"#4a4458",W:"#2e2a38",need:6},{n:"PINK",w:"#ff9ccf",W:"p",need:12},{n:"NEON",w:"n",W:"N",need:18},{n:"GOLD",w:"y",W:"Y",need:26},{n:"CHROME",w:"l",W:"L",need:40}];
-const KIDS=HOODIES.map(o=>recolor(SPR.kid,{r:o.c1,R:o.c2}));
-const PLUGSETS=PLUGS.map(o=>[rotSet(recolor(SPR.plug,{w:o.w,W:o.W})),rotSet(recolor(SPR.plugOn,{w:o.w,W:o.W}))]);
+const KIDS=HOODIES.map(o=>sprite(KID_ROWS,{r:o.c1,R:o.c2}));
+const PLUGSETS=PLUGS.map(o=>[rotSetRows(PLUG_ROWS,{w:o.w,W:o.W,v:"G"}),rotSetRows(PLUG_ROWS,{w:o.w,W:o.W,v:"n"})]);
 function drawPlug(c,x,y,ang,on){let i=Math.round(((ang%(Math.PI*2))+Math.PI*2)%(Math.PI*2)/(Math.PI/16))%32;const set=PLUGSETS[prog.style.p]||PLUGSETS[0];c.drawImage((on?set[1]:set[0])[i],Math.round(x)-10,Math.round(y)-10);}
 
 /* ---------------- room geometry ---------------- */
@@ -694,7 +689,10 @@ function drawStyle(c){g2=c;c.globalAlpha=.7;rect(c,0,0,W,H,"k");c.globalAlpha=1;
   const S=phoneFrame(c,103,3,114,174,{bat:3,max:100,bg:wallpaper(["#1d2b45","#24375a"])});
   text(c,"CLOSET",S.x+4,S.y,"w",1,"k");const bs=bt+"";text(c,bs,S.x+S.w-4-textW(bs),S.y,"y",1,"k");c.drawImage(SPR.bolt,S.x+S.w-11-textW(bs),S.y-1);
   rect(c,S.x+4,S.y+9,S.w-8,48,room?room.theme.wall:"d");rect(c,S.x+4,S.y+50,S.w-8,7,"u");rect(c,S.x+4,S.y+50,S.w-8,1,"T");
-  c.drawImage(KIDS[prog.style.h],0,0,16,22,S.x+30,S.y+11,32,44);drawPlug(c,S.x+76,S.y+30,-.6,false);
+  c.drawImage(KIDS[prog.style.h],0,0,16,22,S.x+8,S.y+11,32,44);
+  {const [mc,mx]=off(30,10);rect(mx,1,7,8,2,"k");rect(mx,2,7,6,1,"l");rect(mx,1,9,8,1,"x");
+   line(mx,9,8,11,8,"w");line(mx,11,8,13,5,"w");line(mx,9,9,11,9,"W");
+   mx.drawImage(PLUGSETS[prog.style.p][0][0],3,7,16,8,13,1,16,8);c.drawImage(mc,0,0,30,10,S.x+44,S.y+32,60,20);}
   let info=null;const rows=[["HOODIE",HOODIES,"h",S.y+68],["PLUG",PLUGS,"p",S.y+96]];
   for(const [label,list,key,y] of rows){text(c,label,S.x+4,y-8,"w");
     list.forEach((o,i)=>{const x=S.x+4+i*16,locked=bt<o.need,sel=prog.style[key]===i;rrect(c,x,y,14,16,sel?"y":"k",1);rect(c,x+1,y+1,12,14,locked?"#2e2a3a":"#e9e4f2");
