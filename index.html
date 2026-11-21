@@ -139,31 +139,31 @@ const ROOMS=[
  {name:"UNDER THE DESK",tip:"STAY LOW. SKIP IT IN.",target:{kind:"wall",y:150},tol:2,preview:0,cable:380,props:[{t:"desk",x:236,top:120},{t:"plant",x:150}]},
  {name:"DESK FAN",tip:"IT BLOWS RIGHT AT YOU.",target:{kind:"wall",y:112},tol:5,preview:0,cable:380,props:[{t:"stool",x:180}],fan:{x:187,y:110,dir:-1,zone:[72,92,108,40],force:620}},
  {"name":"SLEEPOVER","tip":"FIND THE ANGLE. MIND THE LAMP.","target":{"kind":"wall","y":43},"tol":6,"preview":0,"cable":380,"props":[{"t":"nightstand","x":190,"lamp":false},{"t":"shelf","x":277,"top":82}],"movers":[{"type":"pend","x":177,"len":68,"amp":0.7302274102810771,"period":2.6586751378607003}]},
+ {name:"ROLLER BLIND",tip:"THE BLIND ROLLS UP AND DOWN. TIME IT.",target:{kind:"wall",y:118},tol:5,preview:0,cable:380,props:[{t:"shelf",x:196,top:112}],movers:[{type:"gate",x:296,w:8,h:62,y0:22,y1:96,period:2.8}]},
  {name:"HIGH SOCKET",tip:"THE CEILING IS A WALL TOO.",target:{kind:"wall",y:40},tol:6,preview:0,cable:380,props:[{t:"wardrobe",x:252,w:48,top:62},{t:"nightstand",x:150,lamp:true}]},
- {name:"DRAFTY ROOM",tip:"THE WINDOW IS OPEN. RIDE THE DRAFT.",target:{kind:"wall",y:52},tol:4,preview:0,cable:380,props:[{t:"shelf",x:236,top:104}],winds:[{x:80,y:36,w:220,h:50,fx:380,fy:0}]},
  {name:"BOOK FORT",tip:"SNEAK IT BETWEEN THE SHELVES.",target:{kind:"wall",y:138},tol:5,preview:0,cable:380,props:[{t:"shelf",x:160,top:96},{t:"shelf",x:236,top:76}]},
  {name:"THE GAUNTLET",tip:"EVERYTHING AT ONCE.",target:{kind:"wall",y:64},tol:4.5,preview:0,cable:380,props:[{t:"shelf",x:150,top:100},{t:"stool",x:212}],fan:{x:219,y:110,dir:-1,zone:[96,92,116,40],force:560},vac:{x0:236,x1:290,speed:55}},
  {"name":"SECOND WIND","tip":"CEILING SOCKET. BOUNCE IT UP. MIND THE LAMP.","target":{"kind":"ceil","x":158},"tol":4,"preview":0,"cable":380,"props":[{"t":"tramp","x":134,"w":48},{"t":"stool","x":233},{"t":"nightstand","x":280,"lamp":true}],"movers":[{"type":"pend","x":211,"len":45,"amp":0.5674453060841188,"period":2.696194685483351}],"fan":{"x":240,"y":110,"dir":-1,"zone":[123,92,110,40],"force":444}},
+ {name:"CLEANING DAY",tip:"VACUUM ON PATROL. BLIND ON A TIMER.",target:{kind:"wall",y:120},tol:5,preview:0,cable:380,props:[{t:"plant",x:120}],vac:{x0:150,x1:262,speed:55},movers:[{type:"gate",x:296,w:8,h:56,y0:24,y1:98,period:3.0}]},
  {name:"AIR CON",tip:"THE AC PUSHES EVERYTHING DOWN.",target:{kind:"wall",y:70},tol:7,preview:0,cable:380,props:[{t:"nightstand",x:250,lamp:true}],winds:[{x:160,y:20,w:40,h:138,fx:0,fy:420,ac:true}]},
- {"name":"SCREEN TIME","tip":"FIND THE ANGLE. WATCH THE CAT.","target":{"kind":"wall","y":51},"tol":5,"preview":0,"cable":380,"props":[{"t":"plant","x":99}],"movers":[{"type":"cat","x0":155,"x1":219,"speed":27},{"type":"gate","x":296,"w":8,"h":63,"y0":20,"y1":96,"period":2.7552386259660127}]},
  {name:"BOOKSHELF",tip:"GO OVER IT. COME IN FLAT.",target:{kind:"wall",y:140},tol:6.5,preview:0,cable:380,props:[{t:"shelf",x:200,top:76},{t:"plant",x:120}]},
+ {name:"DRAFTY ROOM",tip:"THE WINDOW IS OPEN. RIDE THE DRAFT.",target:{kind:"wall",y:52},tol:4,preview:0,cable:380,draft:true,props:[{t:"shelf",x:236,top:104}],winds:[{x:154,y:30,w:150,h:44,fx:420,fy:0}]},
  {"name":"SNOOZE BUTTON","tip":"FIND THE ANGLE.","target":{"kind":"wall","y":46},"tol":5,"preview":0,"cable":380,"props":[{"t":"shelf","x":149,"top":102},{"t":"plant","x":282}]},
  {"name":"LOW BATTERY","tip":"FIND THE ANGLE. MIND THE LAMP.","target":{"kind":"wall","y":60},"tol":5,"preview":0,"cable":380,"props":[{"t":"plant","x":242},{"t":"stool","x":292},{"t":"belt","x":111,"w":110,"speed":-101}],"movers":[{"type":"pend","x":196,"len":69,"amp":0.752643621561583,"period":2.55323620182462}]},
  {"name":"NIGHT OWL","tip":"CEILING SOCKET. BOUNCE IT UP. WATCH THE CAT.","target":{"kind":"ceil","x":212},"tol":5,"preview":0,"cable":380,"props":[{"t":"tramp","x":188,"w":48},{"t":"wardrobe","x":260,"w":44,"top":68},{"t":"stool","x":141},{"t":"stool","x":110}],"movers":[{"type":"cat","x0":132,"x1":239,"speed":22},{"type":"pend","x":265,"len":82,"amp":0.5048579822294414,"period":2.1288960175123064}],"fan":{"x":148,"y":110,"dir":-1,"zone":[60,92,110,40],"force":474}},
  {name:"LAMP SANDWICH",tip:"TWO LAMPS. ONE GAP.",target:{kind:"wall",y:100},tol:5,preview:0,cable:380,props:[{t:"plant",x:110}],movers:[{type:"pend",x:160,len:62,amp:.6,period:2.2},{type:"pend",x:240,len:74,amp:.55,period:2.7}]},
- {name:"CLEANING DAY",tip:"VACUUM ON PATROL. DOOR ON A TIMER.",target:{kind:"wall",y:120},tol:5,preview:0,cable:380,props:[{t:"plant",x:120}],vac:{x0:150,x1:262,speed:55},movers:[{type:"gate",x:296,w:8,h:56,y0:24,y1:98,period:3.0}]},
- {"name":"DO NOT DISTURB","tip":"FIND THE ANGLE. WATCH THE CAT.","target":{"kind":"wall","y":82},"tol":4,"preview":0,"cable":380,"props":[{"t":"wardrobe","x":221,"w":44,"top":84},{"t":"wardrobe","x":104,"w":44,"top":85}],"movers":[{"type":"cat","x0":173,"x1":283,"speed":32},{"type":"gate","x":296,"w":8,"h":56,"y0":20,"y1":96,"period":2.281577371340245}]},
  {name:"NIGHT SHIFT",tip:"TRAMPOLINE. LAMP. CAT. GOOD LUCK.",target:{kind:"ceil",x:212},tol:6.5,preview:0,cable:380,props:[{t:"tramp",x:188,w:48}],movers:[{type:"pend",x:150,len:60,amp:.6,period:2},{type:"cat",x0:250,x1:292,speed:24}]},
- {name:"CLOSET DOOR",tip:"THE DOOR WILL NOT WAIT FOR YOU.",target:{kind:"wall",y:118},tol:5,preview:0,cable:380,props:[{t:"shelf",x:196,top:112}],movers:[{type:"gate",x:296,w:8,h:62,y0:22,y1:96,period:2.8}]},
  {"name":"POWER NAP","tip":"CEILING SOCKET. BOUNCE IT UP. MIND THE LAMP.","target":{"kind":"ceil","x":227},"tol":6,"preview":0,"cable":380,"props":[{"t":"tramp","x":203,"w":48},{"t":"wardrobe","x":113,"w":44,"top":97},{"t":"shelf","x":260,"top":96}],"movers":[{"type":"pend","x":187,"len":72,"amp":0.7814824257511646,"period":2.779876440251246}]},
  {"name":"BLACKOUT","tip":"FIND THE ANGLE. THE AC PUSHES DOWN.","target":{"kind":"wall","y":98},"tol":5,"preview":0,"cable":380,"props":[{"t":"shelf","x":119,"top":114},{"t":"wardrobe","x":251,"w":44,"top":88},{"t":"nightstand","x":205,"lamp":true}],"winds":[{"x":219,"y":20,"w":48,"h":138,"fx":0,"fy":720,"ac":true}]},
  {"name":"MONDAY","tip":"CEILING SOCKET. BOUNCE IT UP. FAN IN THE WAY.","target":{"kind":"ceil","x":248},"tol":4,"preview":0,"cable":380,"props":[{"t":"tramp","x":224,"w":48},{"t":"stool","x":194},{"t":"wardrobe","x":117,"w":44,"top":77},{"t":"stool","x":282}],"fan":{"x":289,"y":110,"dir":-1,"zone":[172,92,110,40],"force":449}},
- {name:"LAST CALL",tip:"ONE PERCENT. NO PRESSURE.",target:{kind:"wall",y:64},tol:5,preview:0,cable:380,props:[{t:"plant",x:96}],movers:[{type:"pend",x:170,len:56,amp:.7,period:2.3},{type:"cat",x0:120,x1:220,speed:36},{type:"gate",x:296,w:8,h:50,y0:20,y1:92,period:2.6}],winds:[{x:212,y:20,w:36,h:138,fx:0,fy:420,ac:true}]},
  {name:"STEP STOOLS",tip:"THE CEILING AGAIN. BOUNCE IT UP.",target:{kind:"ceil",x:206},tol:5,preview:0,cable:380,props:[{t:"tramp",x:182,w:48},{t:"stool",x:120},{t:"stool",x:262}]},
+ {"name":"SCREEN TIME","tip":"FIND THE ANGLE. WATCH THE CAT.","target":{"kind":"wall","y":51},"tol":5,"preview":0,"cable":380,"props":[{"t":"plant","x":99}],"movers":[{"type":"cat","x0":155,"x1":219,"speed":27},{"type":"gate","x":296,"w":8,"h":63,"y0":20,"y1":96,"period":2.7552386259660127}]},
+ {"name":"DO NOT DISTURB","tip":"FIND THE ANGLE. WATCH THE CAT.","target":{"kind":"wall","y":82},"tol":4,"preview":0,"cable":380,"props":[{"t":"wardrobe","x":221,"w":44,"top":84},{"t":"wardrobe","x":104,"w":44,"top":85}],"movers":[{"type":"cat","x0":173,"x1":283,"speed":32},{"type":"gate","x":296,"w":8,"h":56,"y0":20,"y1":96,"period":2.281577371340245}]},
  {name:"CEILING SOCKET",tip:"WHO WIRED THIS ROOM? USE THE TRAMPOLINE.",target:{kind:"ceil",x:240},tol:7,preview:0,cable:380,props:[{t:"tramp",x:216,w:48},{t:"plant",x:140},{t:"shelf",x:290,top:90}]},
  {"name":"GHOST OUTLET","tip":"FIND THE ANGLE. THE AC PUSHES DOWN.","target":{"kind":"wall","y":49},"tol":4,"preview":0,"cable":380,"props":[{"t":"shelf","x":199,"top":86},{"t":"plant","x":127},{"t":"wardrobe","x":248,"w":44,"top":94}],"winds":[{"x":167,"y":20,"w":51,"h":138,"fx":0,"fy":499,"ac":true},{"x":145,"y":20,"w":52,"h":138,"fx":0,"fy":717,"ac":true}]},
  {"name":"SPARE ROOM","tip":"CEILING SOCKET. BOUNCE IT UP. WATCH THE CAT.","target":{"kind":"ceil","x":247},"tol":4,"preview":0,"cable":380,"props":[{"t":"tramp","x":223,"w":48},{"t":"stool","x":289},{"t":"stool","x":182},{"t":"nightstand","x":111,"lamp":true}],"movers":[{"type":"cat","x0":132,"x1":248,"speed":42}],"winds":[{"x":128,"y":20,"w":61,"h":138,"fx":0,"fy":635,"ac":true}],"fan":{"x":189,"y":110,"dir":-1,"zone":[72,92,110,40],"force":445}},
  {"name":"BEDHEAD","tip":"CEILING SOCKET. BOUNCE IT UP. MIND THE LAMP.","target":{"kind":"ceil","x":209},"tol":5,"preview":0,"cable":380,"props":[{"t":"tramp","x":185,"w":48},{"t":"wardrobe","x":92,"w":44,"top":70}],"movers":[{"type":"pend","x":177,"len":49,"amp":0.5652997269178741,"period":2.7973007284570484}]},
+ {name:"LAST CALL",tip:"ONE PERCENT. NO PRESSURE.",target:{kind:"wall",y:64},tol:5,preview:0,cable:380,props:[{t:"plant",x:96}],movers:[{type:"pend",x:170,len:56,amp:.7,period:2.3},{type:"cat",x0:120,x1:220,speed:36},{type:"gate",x:296,w:8,h:50,y0:20,y1:92,period:2.6}],winds:[{x:212,y:20,w:36,h:138,fx:0,fy:420,ac:true}]},
  {name:"FINAL BOSS",tip:"EVERYTHING YOU HAVE LEARNED.",target:{kind:"wall",y:72},tol:3,preview:0,cable:380,props:[{t:"stool",x:150}],fan:{x:157,y:110,dir:-1,zone:[60,92,96,40],force:520},movers:[{type:"pend",x:240,len:52,amp:.8,period:2.1}],winds:[{x:212,y:20,w:40,h:90,fx:0,fy:680,ac:true}]}
 ];
 const PAR=[1700,2300];
@@ -192,7 +192,7 @@ let prog={max:0,best:{},bolts:{},style:{h:0,p:0},endBest:0};
 try{prog=Object.assign(prog,JSON.parse(localStorage.getItem("plugshot-px")||"{}"));}catch(e){}
 if(!prog.style)prog.style={h:0,p:0};
 const OLD_ORDER=["WAKE-UP CALL", "UNDER THE DESK", "ROBO-VAC", "BOOKSHELF", "HIGH SOCKET", "DESK FAN", "CEILING SOCKET", "THE GAUNTLET", "TREADMILL", "THE CAT", "SWING LAMP", "BEHIND YOU", "NIGHT SHIFT", "CLOSET DOOR", "AIR CON", "FINAL BOSS"];
-for(const k of ["best","bolts"]){const o=prog[k]||{},n={};for(const key in o){n[/^\d+$/.test(key)?(OLD_ORDER[+key]||key):key]=o[key];}prog[k]=n;}
+for(const k of ["best","bolts"]){if(prog[k]&&prog[k]["CLOSET DOOR"]!=null&&prog[k]["ROLLER BLIND"]==null)prog[k]["ROLLER BLIND"]=prog[k]["CLOSET DOOR"];const o=prog[k]||{},n={};for(const key in o){n[/^\d+$/.test(key)?(OLD_ORDER[+key]||key):key]=o[key];}prog[k]=n;}
 const save=()=>{try{localStorage.setItem("plugshot-px",JSON.stringify(prog));}catch(e){}};
 const doneRoom=i=>i>=0&&i<ROOMS.length&&(prog.bolts[ROOMS[i].name]||0)>0;
 const unlocked=i=>i===0||doneRoom(i)||doneRoom(i-1);
@@ -277,7 +277,9 @@ function setupRoom(r){room=r;
   bakeRoom(room);
   fan=room.fan?{...room.fan}:null;
   vac=room.vac?{x:room.vac.x0,y:146,w:30,h:12,dir:1,vx:room.vac.speed,x0:room.vac.x0,x1:room.vac.x1,speed:room.vac.speed}:null;
-  movers=(room.movers||[]).map(m=>({...m,hop:0}));simT=0;moveThings(0);needCoil=true;}
+  movers=(room.movers||[]).map(m=>({...m,hop:0}));
+  // roller blinds: the bottom edge always travels from well above the outlet to well below it, so there is a window to time
+  for(const m of movers)if(m.type==="gate"&&(room.target.kind==="wall"||room.target.kind==="left")){const ty=room.target.y,top=Math.max(Y0+10,ty-24),bot=Math.min(Y1-2,ty+20);m.y0=top-m.h;m.y1=bot-m.h;}simT=0;moveThings(0);needCoil=true;}
 function loadRoom(i){ri=i;endless=null;daily=null;setupRoom(ROOMS[i]);battery=3;throws=0;ghostLast=[];toReady();}
 function toReady(){mode="ready";reeling=false;reelT=0;liftT=0;plug.x=HAND.x;plug.y=HAND.y;plug.vx=plug.vy=0;plug.a=0;plug.w=0;slow=1;reason="";reasonRank=0;drag=null;aimV=null;
   needCoil=false;cleanCable();}
@@ -303,7 +305,7 @@ function note(r,k){if(k>=reasonRank){reasonRank=k;reason=r;}}
 function bounce(nx,ny,pen,kind,svx=0,svy=0,e=REST){plug.x+=nx*pen;plug.y+=ny*pen;let rvx=plug.vx-svx,rvy=plug.vy-svy;const vn=rvx*nx+rvy*ny;if(vn>=0)return;
   rvx-=(1+e)*vn*nx;rvy-=(1+e)*vn*ny;const tx=-ny,ty=nx,vt=rvx*tx+rvy*ty;const fr=kind==="tramp"?.55:kind==="belt"?.6:kind==="floor"?.25:.12;rvx-=tx*vt*fr;rvy-=ty*vt*fr;plug.vx=rvx+svx;plug.vy=rvy+svy;
   const imp=Math.min(1,-vn/300);plug.w+=((sim?simRand():Math.random())-.5)*40*imp;
-  if(-vn>60){if(kind==="wall")trick("wall","BANK");else if(kind==="ceil")trick("ceil","CEILING");else if(kind==="floor")trick("floor","SKIP");else if(kind==="bed")trick("bed","BOING");else if(kind==="tramp")trick("tramp","TRAMPOLINE");else if(kind==="fan")trick("fan","FAN SMACK");else if(kind==="cat")trick("cat","MEOW!");else if(kind==="pend")trick("pend","LAMP SMACK");else if(kind==="gate")trick("gate","DOOR KNOCK");else if(kind==="belt")trick("belt","CONVEYOR");else trick("box","RICOCHET");
+  if(-vn>60){if(kind==="wall")trick("wall","BANK");else if(kind==="ceil")trick("ceil","CEILING");else if(kind==="floor")trick("floor","SKIP");else if(kind==="bed")trick("bed","BOING");else if(kind==="tramp")trick("tramp","TRAMPOLINE");else if(kind==="fan")trick("fan","FAN SMACK");else if(kind==="cat")trick("cat","MEOW!");else if(kind==="pend")trick("pend","LAMP SMACK");else if(kind==="gate")trick("gate","BLIND BUMP");else if(kind==="belt")trick("belt","CONVEYOR");else trick("box","RICOCHET");
     if(!sim){shake=Math.max(shake,Math.min(3,-vn/120));blip(140+imp*200,.05,"triangle",.08+imp*.15);for(let i=0;i<5;i++)parts.push({x:plug.x-nx*2,y:plug.y-ny*2,vx:(Math.random()-.5)*40+nx*20,vy:(Math.random()-.5)*40+ny*20,g:-15,life:.35+Math.random()*.2,c:kind==="floor"?"t":"g"});}}}
 function checkSockets(){const dx=Math.cos(plug.a),dy=Math.sin(plug.a),tx=plug.x+dx*4,ty=plug.y+dy*4;
   for(const s of sockets()){const rx=tx-s.x,ry=ty-s.y,depth=rx*s.nx+ry*s.ny;if(depth>1.5||depth<-5)continue;const lat=Math.abs(rx*-s.ny+ry*s.nx);if(lat>room.tol*2.2)continue;
@@ -322,7 +324,7 @@ function step(dt){
   if(plug.x<X0+R)bounce(1,0,(X0+R)-plug.x,"wall");
   if(plug.x>X1-R)bounce(-1,0,plug.x-(X1-R),"wall");
   const list=solids.concat(vac?[{x:vac.x,y:vac.y,w:vac.w,h:vac.h,kind:"vac",vx:vac.vx}]:[]);
-  for(const m of movers){if(m.type==="cat")list.push({x:m.x,y:149,w:16,h:9,kind:"cat",vx:m.vx,m});else if(m.type==="gate")list.push({x:m.x,y:m.y,w:m.w,h:m.h,kind:"gate",vy:m.vy});}
+  for(const m of movers){if(m.type==="cat")list.push({x:m.x,y:149,w:16,h:9,kind:"cat",vx:m.vx,m});else if(m.type==="gate"){const bot=m.y+m.h;list.push({x:m.x,y:Y0+4,w:m.w,h:bot-(Y0+4),kind:"gate",vy:m.vy});}}
   for(const s of list){const cx=Math.max(s.x,Math.min(plug.x,s.x+s.w)),cy=Math.max(s.y,Math.min(plug.y,s.y+s.h));let nx=plug.x-cx,ny=plug.y-cy,d=Math.hypot(nx,ny);
     if(d<R){if(d<1e-4){const l=plug.x-s.x,r=s.x+s.w-plug.x,t=plug.y-s.y,b=s.y+s.h-plug.y,m=Math.min(l,r,t,b);nx=m===l?-1:m===r?1:0;ny=m===t?-1:m===b?1:0;d=0;if(!nx&&!ny)ny=-1;}else{nx/=d;ny/=d;}
       const top=ny<-.5;const kd=top&&s.kind==="bed"?"bed":top&&s.kind==="tramp"?"tramp":top&&s.kind==="belt"?"belt":(s.kind==="cat"||s.kind==="gate")?s.kind:"box";
@@ -418,7 +420,7 @@ function scoreIt(){const rows=[["PLUGGED IN",1000]];const c=k=>tr[k]||0;
   if(c("fan"))rows.push(["FAN SMACK",500]);
   if(c("cat"))rows.push(["CAT BOUNCE",300]);
   if(c("pend"))rows.push(["LAMP SMACK",400]);
-  if(c("gate"))rows.push(["DOOR KNOCK",300]);
+  if(c("gate"))rows.push(["BLIND BUMP",300]);
   if(c("belt"))rows.push(["CONVEYOR",300]);
   if(windT>.15)rows.push(["AGAINST THE WIND",300]);
   if(!["wall","ceil","floor","bed","box","fan","tramp","cat","pend","gate","belt"].some(k=>c(k)))rows.push(["NOTHING BUT SOCKET",250]);
@@ -506,7 +508,7 @@ function sticky(c,x,y,lines){const w=Math.max(...lines.map(l=>textW(l)))+10,h=li
   lines.forEach((l,i)=>text(c,l,x+5,y+4+i*7,i===0?"R":"k"));return h;}
 function phoneIcon(c,x,y,bat,max,charging){rect(c,x+1,y,9,16,"k");rect(c,x,y+1,11,14,"k");rect(c,x+2,y+2,7,12,"#1d1a26");const lv=Math.max(1,Math.round(10*bat/max));
   rect(c,x+3,y+13-lv,5,lv,charging?"n":bat<=1?"r":"w");rect(c,x+4,y+1,3,1,"G");}
-const TRICK_COL={"BANK":"b","CEIL":"l","FLOO":"t","BED ":"B","TRAM":"L","RICO":"g","FAN ":"l","AGAI":"l","NOTH":"y","MOVI":"G","FIRS":"o","LAST":"r","CAT ":"G","LAMP":"o","DOOR":"T","CONV":"g","PLUG":"n"};
+const TRICK_COL={"BANK":"b","CEIL":"l","FLOO":"t","BED ":"B","TRAM":"L","RICO":"g","FAN ":"l","AGAI":"l","NOTH":"y","MOVI":"G","FIRS":"o","LAST":"r","CAT ":"G","LAMP":"o","BLIN":"T","CONV":"g","PLUG":"n"};
 const burstCache={};
 function burst(t,bad){const key=t+(bad?"!":"");if(burstCache[key])return burstCache[key];const sc=3,w=textW(t,sc)+30,h=5*sc+26;const [cv2,x]=off(w,h);
   for(let j=0;j<h;j++)for(let i=0;i<w;i++){const dx=(i-w/2)/(w/2),dy=(j-h/2)/(h/2),r=Math.hypot(dx,dy),a=Math.atan2(dy,dx),f=.8+.2*Math.abs(Math.cos(a*8));
@@ -597,14 +599,21 @@ function drawPreview(c){if(!aimV)return;const n=Math.max(room.preview||0,16);
   const pw=Math.min(1,Math.hypot(aimV.x,aimV.y)/500);rect(c,14,100,34,8,"k");text(c,"PWR",16,102,"g");rect(c,29,102,17,4,"x");rect(c,29,102,Math.round(17*pw),4,pw>.85?"r":pw>.6?"o":"w");}
 function drawGhost(c){if(ghostLast.length<2)return;for(let i=0;i<ghostLast.length;i+=3){c.globalAlpha=.45;rect(c,ghostLast[i].x,ghostLast[i].y,1,1,"g");}c.globalAlpha=1;}
 
-function drawMovers(c){const t=performance.now()/1000;
+function drawDraftWindow(c,t){ // open window: lower sash raised, curtains, the right one billowing into the room
+  rect(c,98,49,48,21,"#0b0f1c");for(const [sx,sy] of [[103,55],[127,52],[139,60],[112,63]])rect(c,sx,sy,1,1,"w");rect(c,96,46,52,3,"W");rect(c,96,49,52,1,"G");
+  rect(c,86,22,72,2,"k");rect(c,86,22,72,1,"G");
+  for(let y=24;y<76;y++){const k=(y-24)/52;rect(c,88,y,6-Math.round(k*2),1,y%6<3?"p":"R");}
+  for(let y=24;y<76;y++){const k=(y-24)/52,wv=Math.sin(t*4+y*.22)*2.5*k,wd=5+Math.round(k*16+wv);rect(c,151,y,wd,1,(y+Math.floor(t*6))%6<3?"p":"R");rect(c,151+wd,y,1,1,"k");}}
+function drawMovers(c){const t=performance.now()/1000;if(room.draft)drawDraftWindow(c,t);
   for(const p of room.props)if(p.t==="belt"){const o=((simT*p.speed)%6+6)%6,ty=p.top||153;for(let x=p.x+3;x<p.x+p.w-3;x++)if((((x-p.x-o)%6)+6)%6<2)rect(c,x,ty,1,1,"g");}
   for(const z of room.winds||[]){if(z.ac){const ax=Math.round(z.x+z.w/2-14);rect(c,ax,11,28,9,"k");rect(c,ax+1,11,26,7,"w");rect(c,ax+2,15,24,1,"G");rect(c,ax+2,17,24,1,"G");rect(c,ax+22,12,2,1,"n");}
     if(Math.abs(z.fx)>Math.abs(z.fy)){for(let i=0;i<12;i++){const yy=z.y+3+((i*13)%(z.h-6)),xx=z.x+(((t*150*Math.sign(z.fx)+i*37)%z.w)+z.w)%z.w;c.globalAlpha=.3;rect(c,xx,yy,6,1,"l");c.globalAlpha=1;}}
     else for(let i=0;i<10;i++){const xx=z.x+3+((i*11)%(z.w-6)),yy=z.y+(((t*130+i*29)%z.h)+z.h)%z.h;c.globalAlpha=.35;rect(c,xx,yy,1,5,"l");c.globalAlpha=1;}}
   for(const m of movers){
     if(m.type==="pend"){line(c,m.x,Y0,m.bx,m.by,"k");const bx=Math.round(m.bx),by=Math.round(m.by);c.globalAlpha=.16;c.fillStyle=P.y;for(let j=-12;j<=12;j++)for(let i=-12;i<=12;i++)if(i*i+j*j<=144&&((i+j)&1)===0&&j>=-2)c.fillRect(bx+i,by+2+j,1,1);c.globalAlpha=1;rect(c,bx-6,by-4,12,5,"k");rect(c,bx-5,by-3,10,3,"o");rect(c,bx-5,by-3,10,1,"y");rect(c,bx-2,by-6,4,2,"k");rect(c,bx-2,by+1,4,2,"m");}
-    if(m.type==="gate"){const y=Math.round(m.y);rect(c,m.x-2,m.y0-3,m.w+4,2,"G");rect(c,m.x,y,m.w,m.h,"k");rect(c,m.x+1,y+1,m.w-2,m.h-2,"t");for(let yy=y+3;yy<y+m.h-2;yy+=4)rect(c,m.x+1,yy,m.w-2,1,"T");rect(c,m.x+2,y+Math.round(m.h/2)-2,1,4,"y");}
+    if(m.type==="gate"){const top=Y0+4,bot=Math.round(m.y+m.h);rect(c,m.x-3,Y0,m.w+6,6,"k");rect(c,m.x-2,Y0+1,m.w+4,4,"G");rect(c,m.x-2,Y0+1,m.w+4,1,"g");
+      rect(c,m.x,top+2,m.w,bot-top-2,"k");rect(c,m.x+1,top+2,m.w-2,bot-top-3,"#d9cfb8");for(let yy=top+4;yy<bot-2;yy+=3)rect(c,m.x+1,yy,m.w-2,1,"#b5a88c");
+      rect(c,m.x-1,bot-2,m.w+2,2,"T");rect(c,m.x+m.w/2-1,bot,2,3,"G");}
     if(m.type==="cat"){const x=Math.round(m.x),hop=m.hop>0?Math.round(Math.sin((.6-m.hop)/.6*Math.PI)*10):0;const spr=Math.floor(simT*8)%2?SPR.catWalk1:SPR.catWalk2;
       if(m.vx<0){c.save();c.translate(x+16,0);c.scale(-1,1);c.drawImage(spr,0,149-hop);c.restore();}else c.drawImage(spr,x,149-hop);if(m.hop>0)bubble(c,x+2,136-hop,"bang");}}}
 function drawWorld(c){c.drawImage(bg,0,0);drawSky(c);drawCat(c);drawStringLights(c);drawOutlet(c);drawFan(c);drawVac(c);drawMovers(c);
@@ -824,7 +833,7 @@ function drawScores(c){g2=c;c.globalAlpha=.7;rect(c,0,0,W,H,"k");c.globalAlpha=1
   if(!writeOK)textC(c,"VIEW-ONLY: SCORES NOT SAVED",W/2,S.y+S.h-26,"r");
   pill(c,"BACK",S.x+4,S.y+S.h-15,40,()=>{mode="title";},true);if(scoreTab==="daily")pill(c,"PLAY DAILY",S.x+48,S.y+S.h-15,54,()=>startDaily());}
 /* ---------------- story: texts arriving on the phone ---------------- */
-const TEXTS_BY_NAME={"WAKE-UP CALL": ["MOM", "WHY IS YOUR LIGHT STILL ON"], "UNDER THE DESK": ["BESTIE", "DID U SEE THE NEW VIDEO"], "ROBO-VAC": ["ROBO-VAC", "CLEANING STARTED. SORRY."], "BOOKSHELF": ["MOM", "BOOKS ARE FOR READING"], "HIGH SOCKET": ["WEATHER", "STORM WARNING TONIGHT"], "DESK FAN": ["DAD", "WHO LEFT THE FAN ON"], "CEILING SOCKET": ["ELECTRICIAN", "YES THE CEILING ONE IS REAL"], "THE GAUNTLET": ["BESTIE", "3% LEFT? GOOD LUCK LOL"], "TREADMILL": ["GYM APP", "YOU HAVE NOT RUN IN 84 DAYS"], "THE CAT": ["MOM", "FEED THE CAT"], "SWING LAMP": ["LAMP CO", "YOUR LAMP HAS BEEN RECALLED"], "BEHIND YOU": ["UNKNOWN", "TURN AROUND"], "NIGHT SHIFT": ["BESTIE", "R U STILL UP?"], "CLOSET DOOR": ["MOM", "CLEAN YOUR CLOSET"], "AIR CON": ["SMART HOME", "AC SET TO HURRICANE"], "FINAL BOSS": ["PHONE", "1% BATTERY REMAINING"], "LAMP SANDWICH": ["LAMP CO", "WE SENT A SECOND LAMP. SORRY."], "CAT PARADE": ["MOM", "WE GOT ANOTHER CAT"], "WARDROBE WALL": ["DAD", "I MOVED THE WARDROBE"], "STEP STOOLS": ["ELECTRICIAN", "ANOTHER CEILING ONE. DON'T ASK"], "DRAFTY ROOM": ["WEATHER", "STRONG WINDS. CLOSE WINDOWS"], "CLEANING DAY": ["ROBO-VAC", "DEEP CLEAN MODE ENGAGED"], "BOOK FORT": ["LIBRARY", "YOUR BOOKS ARE 3 YEARS LATE"], "LAST CALL": ["PHONE", "SHUTTING DOWN IN 10 SECONDS"]};
+const TEXTS_BY_NAME={"WAKE-UP CALL": ["MOM", "WHY IS YOUR LIGHT STILL ON"], "UNDER THE DESK": ["BESTIE", "DID U SEE THE NEW VIDEO"], "ROBO-VAC": ["ROBO-VAC", "CLEANING STARTED. SORRY."], "BOOKSHELF": ["MOM", "BOOKS ARE FOR READING"], "HIGH SOCKET": ["WEATHER", "STORM WARNING TONIGHT"], "DESK FAN": ["DAD", "WHO LEFT THE FAN ON"], "CEILING SOCKET": ["ELECTRICIAN", "YES THE CEILING ONE IS REAL"], "THE GAUNTLET": ["BESTIE", "3% LEFT? GOOD LUCK LOL"], "TREADMILL": ["GYM APP", "YOU HAVE NOT RUN IN 84 DAYS"], "THE CAT": ["MOM", "FEED THE CAT"], "SWING LAMP": ["LAMP CO", "YOUR LAMP HAS BEEN RECALLED"], "BEHIND YOU": ["UNKNOWN", "TURN AROUND"], "NIGHT SHIFT": ["BESTIE", "R U STILL UP?"], "ROLLER BLIND": ["SMART HOME", "BLINDS SET TO PARTY MODE"], "AIR CON": ["SMART HOME", "AC SET TO HURRICANE"], "FINAL BOSS": ["PHONE", "1% BATTERY REMAINING"], "LAMP SANDWICH": ["LAMP CO", "WE SENT A SECOND LAMP. SORRY."], "CAT PARADE": ["MOM", "WE GOT ANOTHER CAT"], "WARDROBE WALL": ["DAD", "I MOVED THE WARDROBE"], "STEP STOOLS": ["ELECTRICIAN", "ANOTHER CEILING ONE. DON'T ASK"], "DRAFTY ROOM": ["WEATHER", "STRONG WINDS. CLOSE WINDOWS"], "CLEANING DAY": ["ROBO-VAC", "DEEP CLEAN MODE ENGAGED"], "BOOK FORT": ["LIBRARY", "YOUR BOOKS ARE 3 YEARS LATE"], "LAST CALL": ["PHONE", "SHUTTING DOWN IN 10 SECONDS"]};
 const TEXT_POOL=[["BESTIE","U UP?"],["MOM","GO TO SLEEP"],["DAD","WHO IS THROWING THINGS"],["NEIGHBOR","PLEASE STOP THE THUMPING"],["PIZZA APP","YOUR ORDER IS 3 MIN AWAY"],
  ["BESTIE","SEND THE VIDEO"],["SCHOOL","FIRST PERIOD STARTS AT 8"],["GAME APP","YOUR ENERGY IS FULL"],["MOM","ARE YOU THROWING THE CHARGER AGAIN"],["SMART HOME","MOTION DETECTED"],
  ["BESTIE","IT IS 4 AM"],["ALARM","WAKE UP IN 3 HOURS"],["DAD","THE WIFI IS OFF. GOODNIGHT"],["WEATHER","CLEAR SKIES TONIGHT"],["MOM","I CAN HEAR YOU"],["UNKNOWN","NICE THROW"],
